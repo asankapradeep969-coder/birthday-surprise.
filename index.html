@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>කුටූ මැණික ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial, "Noto Sans Sinhala", sans-serif;
+    background:
+        radial-gradient(circle at center,#72164f 0%,#26091f 40%,#08030a 100%);
+    color:white;
+}
+
+/* PASSWORD SCREEN */
+
+#lock{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    text-align:center;
+}
+
+.box{
+    width:100%;
+    max-width:390px;
+    padding:38px 25px;
+    border-radius:30px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(18px);
+    box-shadow:0 0 60px rgba(255,30,140,.3);
+    animation:appear 1.2s ease;
+}
+
+.lock{
+    font-size:65px;
+    margin-bottom:15px;
+    animation:pulse 1.5s infinite;
+}
+
+.box h1{
+    font-size:27px;
+    margin-bottom:12px;
+}
+
+.box p{
+    color:#ddd;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:16px;
+    border:0;
+    outline:none;
+    border-radius:30px;
+    text-align:center;
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+button{
+    border:0;
+    padding:15px 28px;
+    border-radius:30px;
+    background:#ff2f92;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    box-shadow:0 8px 30px rgba(255,47,146,.4);
+}
+
+#error{
+    display:none;
+    color:#ff82b8;
+    margin-top:15px;
+}
+
+/* MAIN */
+
+#main{
+    display:none;
+    min-height:100vh;
+    text-align:center;
+    position:relative;
+}
+
+.content{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    position:relative;
+    z-index:10;
+}
+
+.small{
+    font-size:24px;
+    color:#ff9ac7;
+    opacity:0;
+    animation:fadeIn 2s forwards;
+}
+
+.message{
+    margin-top:25px;
+    max-width:850px;
+    font-size:clamp(35px,9vw,75px);
+    line-height:1.35;
+    font-weight:bold;
+    opacity:0;
+    animation:messageIn 2s 1.5s forwards;
+    text-shadow:
+        0 0 15px #ff3f9e,
+        0 0 35px #ff3f9e,
+        0 0 70px #ff3f9e;
+}
+
+.sub{
+    margin-top:30px;
+    font-size:20px;
+    color:#eee;
+    opacity:0;
+    animation:fadeIn 2s 4s forwards;
+}
+
+.heart{
+    font-size:75px;
+    margin-bottom:20px;
+    animation:heartbeat 1.2s infinite;
+}
+
+/* FLOATING HEARTS */
+
+.floating{
+    position:fixed;
+    bottom:-50px;
+    z-index:5;
+    pointer-events:none;
+    animation:float 6s linear forwards;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.25)}
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.1)}
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes messageIn{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* SPARKLES */
+
+.sparkle{
+    position:fixed;
+    pointer-events:none;
+    z-index:3;
+    animation:spark 2s linear forwards;
+}
+
+@keyframes spark{
+    0%{
+        opacity:0;
+        transform:scale(0);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.5);
+    }
+    100%{
+        opacity:0;
+        transform:scale(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+
+<div id="lock">
+
+    <div class="box">
+
+        <div class="lock">🔐</div>
+
+        <h1>පුංචි රහසක් ❤️</h1>
+
+        <p>
+            මේක ඔයා වෙනුවෙන්ම හදපු දෙයක්...<br>
+            Password එක දාලා ඇතුළට එන්න 💕
+        </p>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password එක දාන්න"
+        >
+
+        <button onclick="unlock()">
+            OPEN ❤️
+        </button>
+
+        <div id="error">
+            Password එක වැරදියි 😌❤️
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div id="main">
+
+    <div class="content">
+
+        <div class="heart">❤️</div>
+
+        <div class="small">
+            කුටූ මැණික...
+        </div>
+
+        <div class="message">
+            සුබම සුබ උපන්දිනයක් වේවා<br>
+            කුටූ මැණික ❤️🎂
+        </div>
+
+        <div class="sub">
+            ඔයාට හැමදාම සතුටින් ඉන්න ලැබෙන්න කියලා
+            මම හදවතින්ම ප්‍රාර්ථනා කරනවා. 🥺❤️
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const password = "කුටූ";
+
+function unlock(){
+
+    const entered =
+        document.getElementById("password").value;
+
+    if(entered === password){
+
+        document.getElementById("lock").style.display="none";
+
+        document.getElementById("main").style.display="block";
+
+        startHearts();
+        startSparkles();
+
+    }else{
+
+        document.getElementById("error").style.display="block";
+
+    }
+
+}
+
+
+/* HEARTS */
+
+function startHearts(){
+
+    setInterval(function(){
+
+        const heart =
+            document.createElement("div");
+
+        heart.className="floating";
+
+        const hearts=[
+            "❤️",
+            "💗",
+            "💕",
+            "💖",
+            "💓",
+            "💞"
+        ];
+
+        heart.innerHTML =
+            hearts[Math.floor(Math.random()*hearts.length)];
+
+        heart.style.left =
+            Math.random()*100+"vw";
+
+        heart.style.fontSize =
+            (18+Math.random()*30)+"px";
+
+        heart.style.animationDuration =
+            (4+Math.random()*4)+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },8000);
+
+    },350);
+
+}
+
+
+/* SPARKLES */
+
+function startSparkles(){
+
+    setInterval(function(){
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.className="sparkle";
+
+        sparkle.innerHTML="✨";
+
+        sparkle.style.left =
+            Math.random()*100+"vw";
+
+        sparkle.style.top =
+            Math.random()*100+"vh";
+
+        sparkle.style.fontSize =
+            (12+Math.random()*25)+"px";
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(()=>{
+            sparkle.remove();
+        },2000);
+
+    },300);
+
+}
+
+</script>
+
+</body>
+</html>
